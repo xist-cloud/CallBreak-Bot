@@ -1,0 +1,39 @@
+{
+  "id": "P0",
+  "cards": [
+    "1S",
+    "KS",
+    "9S",
+    "8S",
+    "2S",
+    "TH",
+    "3H",
+    "KC",
+    "9C",
+    "3C",
+    "1D",
+    "QD",
+    "9D"
+  ],
+  "context": {
+    "round": 5,
+    "players": {
+      "P0": {
+        "totalPoints": 6.1,
+        "bid": 0
+      },
+      "Bot-1": {
+        "totalPoints": 10.5,
+        "bid": 1
+      },
+      "Bot-2": {
+        "totalPoints": 6.4,
+        "bid": 5
+      },
+      "Bot-3": {
+        "totalPoints": 7.2,
+        "bid": 2
+      }
+    }
+  }
+}

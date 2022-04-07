@@ -1,0 +1,27 @@
+{
+  "matchId": "M1",
+  "playerId": "P3",
+  "cards": [
+    "QS",
+    "JS",
+    "TS",
+    "1H",
+    "QH",
+    "TH",
+    "1C",
+    "4C",
+    "2C",
+    "TD",
+    "6D",
+    "5D",
+    "3D"
+  ],
+  "played": [],
+  "history": [],
+  "players": [
+    "P0",
+    "P3",
+    "P2",
+    "P1"
+  ]
+}
