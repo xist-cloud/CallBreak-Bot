@@ -1,39 +1,39 @@
 {
-  "timeBudget": 446,
+  "timeBudget": 693,
   "id": "P0",
   "cards": [
-    "1S",
-    "9S",
-    "8S",
-    "4S",
-    "KH",
-    "JH",
-    "9H",
+    "KS",
+    "QS",
+    "1H",
+    "8H",
+    "6H",
     "5H",
-    "6C",
-    "3C",
-    "2C",
-    "TD",
-    "5D"
+    "4H",
+    "QC",
+    "TC",
+    "4C",
+    "1D",
+    "QD",
+    "JD"
   ],
   "context": {
     "round": 5,
     "players": {
       "P0": {
-        "totalPoints": -6,
+        "totalPoints": 6.5,
         "bid": 0
       },
       "Bot-1": {
-        "totalPoints": 4.199999999999999,
-        "bid": 3
+        "totalPoints": 3.1999999999999993,
+        "bid": 1
       },
       "Bot-2": {
-        "totalPoints": 13.7,
-        "bid": 4
+        "totalPoints": 9.2,
+        "bid": 1
       },
       "Bot-3": {
-        "totalPoints": 11.499999999999998,
-        "bid": 1
+        "totalPoints": 10.6,
+        "bid": 5
       }
     }
   }

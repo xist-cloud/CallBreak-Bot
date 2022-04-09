@@ -1,16 +1,4 @@
-# This contains the basic code that you will need to view the game on the snadbox.
-# You will provide all the moves of all the bots in the sandbox.
-# The sandbox is for testing purposes only so, the API data format can change
-# when quelifiers begin.
-# The sandbox is provided so that you can get familiar with buliding bots before
-#  the event actually begings.
-
-# To seutp: `pip install flask, flask_cors`
-# To run: python app.py
-
 import json
-
-
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
@@ -62,8 +50,8 @@ def bid():
     ####################################
     #     Input your code here.        #
     ####################################
-    # with open("json/bid_log.json", "w") as handle:
-    #     handle.write(j)
+    with open("json/bid_log.json", "w") as handle:
+        handle.write(j)
 
     # return should have a single field value which should be an int reprsenting the bid value
     return jsonify({"value": 3})
@@ -103,23 +91,33 @@ def play():
     # with open("json/play_log.json", "a") as handle:
     #     handle.write(j)
     
-    # print(body["cards"].index("KS"))
-
-    # return should have a single field value
-    # which should be an string reprsenting the card to play
-    # e.g> {"value": "QS"}
-    # to play the card "QS"
+    # creating a list of trump cards
     trump_cards_list = [card for card in body['cards'] if card[1] == 'S']
+
+    # sorting the list of trump cards
     trump_cards_list = sorted(trump_cards_list, key = lambda x: cards_dict[x[0]])
+
+    # creating list of cards to bait higher order cards
+    trap_cards_list = [card for card in body["cards"] if card[0] in ['T', 'J', '9']]
+    print(trap_cards_list)
+
+    # check if a card is already played by other players
     if body['played']:
+
+        # getting suit of lead card
         lead_suit = body['played'][0][1]
+
+        # creating a list containing lead suit cards
         lead_suit_cards = [card for card in body['cards'] if card[1] == lead_suit]
+
+        # checking if list of lead suit is empty
         if lead_suit_cards:
-            print(lead_suit_cards)
+            # sorting list of lead suits
             lead_suit_cards = sorted(lead_suit_cards, key = lambda x: cards_dict[x[0]])
             print(lead_suit_cards)
+
+            # creating list of cards played by others containing lead suit or trump
             played_cards = [card for card in body['played'] if card[1] == lead_suit]
-            print(played_cards)
             played_cards = sorted(played_cards, key = lambda x: cards_dict[x[0]])
             print(played_cards)
             if cards_dict[played_cards[-1][0]] > cards_dict[lead_suit_cards[-1][0]]:
@@ -127,12 +125,29 @@ def play():
             else:
                 best = lead_suit_cards[-1]
         elif trump_cards_list:
-            best = trump_cards_list[0]
+            played_trump = [card for card in body['played'] if card[1] == 'S']
+            played_trump = sorted(played_trump, key = lambda x: cards_dict[x[0]], reverse = True)
+            print(played_trump)
+
+            # lets play just better (a card of higher order) just for now
+            # might not be the best possible choice
+            if played_trump:
+                for card in trump_cards_list:
+                    print(cards_dict[played_trump[0][0]])
+                    if cards_dict[played_trump[0][0]] < cards_dict[card[0]]:
+                        best = card
+                        break
+                else:
+                    best = trump_cards_list[0]
+            else:
+                best = trump_cards_list[0]
+            
         else:
             best = body['cards'][0]
     else:
-        sorted(body['cards'], key = lambda x: cards_dict[x[0]])
-        best = body['cards'][0]
+        choice_cards = sorted(body['cards'], key = lambda x: cards_dict[x[0]])
+        print(choice_cards)
+        best = choice_cards[0]
 
     #print(lead_value, lead_suit)
     print(best)
