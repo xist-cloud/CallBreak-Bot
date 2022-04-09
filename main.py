@@ -17,6 +17,10 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+@app.route("/hi", methods = ["GET"])
+def hi():
+    return jsonify({"value": "hello"})
+
 @app.route("/bid", methods=["POST"])
 def bid():
     """
@@ -54,12 +58,12 @@ def bid():
 
     body = request.get_json()
     j = json.dumps(body, indent=2)
-    print(j)
+    # print(j)
     ####################################
     #     Input your code here.        #
     ####################################
-    with open("json/bid_log.json", "w") as handle:
-        handle.write(j)
+    # with open("json/bid_log.json", "w") as handle:
+    #     handle.write(j)
 
     # return should have a single field value which should be an int reprsenting the bid value
     return jsonify({"value": 3})
@@ -153,11 +157,11 @@ if __name__ == "__main__":
                 'K': 11, 
                 '1': 12
                 }
-    number_of_played_cards = {"S": 0,
-                              "C": 0,
-                              "H": 0,
-                              "D": 0
-                              }
+    # number_of_played_cards = {"S": 0,
+    #                           "C": 0,
+    #                           "H": 0,
+    #                           "D": 0
+    #                           }
     app.run(port=7000)
 
 
